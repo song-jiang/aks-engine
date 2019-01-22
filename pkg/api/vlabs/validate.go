@@ -72,6 +72,10 @@ var (
 			networkPolicy: "calico",
 		},
 		{
+			networkPlugin: "calico+azureipam",
+			networkPolicy: "calico",
+		},
+		{
 			networkPlugin: "",
 			networkPolicy: "calico",
 		},

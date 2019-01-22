@@ -336,13 +336,14 @@
     "networkPlugin": {
       "defaultValue": "{{.OrchestratorProfile.KubernetesConfig.NetworkPlugin}}",
       "metadata": {
-        "description": "The network plugin to use for Kubernetes (kubenet|azure|flannel|cilium)"
+        "description": "The network plugin to use for Kubernetes (kubenet|azure|flannel|cilium|calico+azureipam)"
       },
       "allowedValues": [
         "kubenet",
         "azure",
         "flannel",
-        "cilium"
+        "cilium",
+        "calico+azureipam"
       ],
       "type": "string"
     },

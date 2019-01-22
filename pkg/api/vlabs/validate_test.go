@@ -604,6 +604,10 @@ func Test_Properties_ValidateNetworkPluginPlusPolicy(t *testing.T) {
 			networkPolicy: "none",
 		},
 		{
+			networkPlugin: "calico+azureipam",
+			networkPolicy: "none",
+		},
+		{
 			networkPlugin: "azure",
 			networkPolicy: "none",
 		},

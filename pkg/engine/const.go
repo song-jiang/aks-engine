@@ -21,8 +21,10 @@ const (
 	NetworkPluginAzure = "azure"
 	// NetworkPluginKubenet is the string expression for kubenet network plugin
 	NetworkPluginKubenet = "kubenet"
-	// NetworkPluginFlannel is the string expression for flannel network policy config option
+	// NetworkPluginFlannel is the string expression for flannel network plugin
 	NetworkPluginFlannel = "flannel"
+	// NetworkPluginCalicoAzureIPAM is the string expression for calico+azureipam plugin
+	NetworkPluginCalicoAzureIPAM = "calico+azureipam"
 	// DefaultKubeHeapsterDeploymentAddonName is the name of the kube-heapster-deployment addon
 	DefaultKubeHeapsterDeploymentAddonName = "kube-heapster-deployment"
 	// DefaultKubeDNSDeploymentAddonName is the name of the kube-dns-deployment addon
@@ -39,6 +41,8 @@ const (
 	DefaultAzureNpmDaemonSetAddonName = "azure-npm-daemonset"
 	// DefaultCalicoDaemonSetAddonName is the name of calico daemonset addon
 	DefaultCalicoDaemonSetAddonName = "calico-daemonset"
+	// DefaultCalicoAzureIPAMDaemonSetAddonName is the name of calico+azureipam daemonset addon
+	DefaultCalicoAzureIPAMDaemonSetAddonName = "calico-azureipam-daemonset"
 	// DefaultCiliumDaemonSetAddonName is the name of cilium daemonset addon
 	DefaultCiliumDaemonSetAddonName = "cilium-daemonset"
 	// DefaultFlannelDaemonSetAddonName is the name of flannel plugin daemonset addon
