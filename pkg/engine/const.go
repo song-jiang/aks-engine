@@ -41,8 +41,6 @@ const (
 	DefaultAzureNpmDaemonSetAddonName = "azure-npm-daemonset"
 	// DefaultCalicoDaemonSetAddonName is the name of calico daemonset addon
 	DefaultCalicoDaemonSetAddonName = "calico-daemonset"
-	// DefaultCalicoAzureIPAMDaemonSetAddonName is the name of calico+azureipam daemonset addon
-	DefaultCalicoAzureIPAMDaemonSetAddonName = "calico-azureipam-daemonset"
 	// DefaultCiliumDaemonSetAddonName is the name of cilium daemonset addon
 	DefaultCiliumDaemonSetAddonName = "cilium-daemonset"
 	// DefaultFlannelDaemonSetAddonName is the name of flannel plugin daemonset addon

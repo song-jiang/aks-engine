@@ -170,13 +170,6 @@ func kubernetesAddonSettingsInit(profile *api.Properties) []kubernetesFeatureSet
 			profile.OrchestratorProfile.KubernetesConfig.GetAddonScript(DefaultCalicoDaemonSetAddonName),
 		},
 		{
-
-			"kubernetesmasteraddons-calico-azureipam-daemonset.yaml",
-			"calico-azureipam-daemonset.yaml",
-			profile.OrchestratorProfile.KubernetesConfig.NetworkPolicy == NetworkPolicyCalico,
-			profile.OrchestratorProfile.KubernetesConfig.GetAddonScript(DefaultCalicoAzureIPAMDaemonSetAddonName),
-		},
-		{
 			"kubernetesmasteraddons-cilium-daemonset.yaml",
 			"cilium-daemonset.yaml",
 			profile.OrchestratorProfile.KubernetesConfig.NetworkPolicy == NetworkPolicyCilium,

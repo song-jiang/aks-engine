@@ -135,7 +135,7 @@ installClearContainersRuntime() {
 }
 
 installNetworkPlugin() {
-    if [[ "${NETWORK_PLUGIN}" = "azure" ]]; then
+    if [[ "${NETWORK_PLUGIN}" = "azure" ]] || [[ "${NETWORK_PLUGIN}" = "calico+azureipam"  ]]; then
         installAzureCNI
     fi
     installCNI
