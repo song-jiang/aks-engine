@@ -198,7 +198,7 @@ configureCNI() {
     if [[ "${NETWORK_PLUGIN}" = "azure" ]]; then
         mv $CNI_BIN_DIR/10-azure.conflist $CNI_CONFIG_DIR/
         chmod 600 $CNI_CONFIG_DIR/10-azure.conflist
-        if [[ "${NETWORK_POLICY}" == "calico" ]]; then
+        if [[ "${NETWORK_POLICY}" == "calico" ]] || [[ "${NETWORK_POLICY}" == "" ]]; then
           sed -i 's#"mode":"bridge"#"mode":"transparent"#g' $CNI_CONFIG_DIR/10-azure.conflist
         fi
         /sbin/ebtables -t nat --list
