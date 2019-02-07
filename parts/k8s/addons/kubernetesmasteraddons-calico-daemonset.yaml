@@ -102,7 +102,7 @@ spec:
         beta.kubernetes.io/os: linux
       hostNetwork: true
       tolerations:
-        # Mark the pod as a critical add-on for rescheduling.
+      # Mark the pod as a critical add-on for rescheduling.
       - key: CriticalAddonsOnly
         operator: Exists
       # Since Calico can't network a pod until Typha is up, we need to run Typha itself
@@ -116,16 +116,16 @@ spec:
           name: calico-typha
           protocol: TCP
         env:
-          # Enable "info" logging by default.  Can be set to "debug" to increase verbosity.
+        # Enable "info" logging by default.  Can be set to "debug" to increase verbosity.
         - name: TYPHA_LOGSEVERITYSCREEN
           value: "info"
-          # Disable logging to file and syslog since those don't make sense in Kubernetes.
+        # Disable logging to file and syslog since those don't make sense in Kubernetes.
         - name: TYPHA_LOGFILEPATH
           value: "none"
         - name: TYPHA_LOGSEVERITYSYS
           value: "none"
-          # Monitor the Kubernetes API to find the number of running instances and rebalance
-          # connections.
+        # Monitor the Kubernetes API to find the number of running instances and rebalance
+        # connections.
         - name: TYPHA_CONNECTIONREBALANCINGMODE
           value: "kubernetes"
         - name: TYPHA_DATASTORETYPE
@@ -134,12 +134,12 @@ spec:
           value: "true"
         - name: FELIX_INTERFACEPREFIX
           value: "azv"
-          # Uncomment these lines to enable prometheus metrics.  Since Typha is host-networked,
-          # this opens a port on the host, which may need to be secured.
-          #- name: TYPHA_PROMETHEUSMETRICSENABLED
-          #  value: "true"
-          #- name: TYPHA_PROMETHEUSMETRICSPORT
-          #  value: "9093"
+        # Uncomment these lines to enable prometheus metrics.  Since Typha is host-networked,
+        # this opens a port on the host, which may need to be secured.
+        #- name: TYPHA_PROMETHEUSMETRICSENABLED
+        #  value: "true"
+        #- name: TYPHA_PROMETHEUSMETRICSPORT
+        #  value: "9093"
         livenessProbe:
           exec:
             command:
@@ -190,10 +190,10 @@ spec:
         beta.kubernetes.io/os: linux
       hostNetwork: true
       tolerations:
-        # Make sure calico-node gets scheduled on all nodes.
+      # Make sure calico-node gets scheduled on all nodes.
       - effect: NoSchedule
         operator: Exists
-        # Mark the pod as a critical add-on for rescheduling.
+      # Mark the pod as a critical add-on for rescheduling.
       - key: CriticalAddonsOnly
         operator: Exists
       - effect: NoExecute
@@ -209,21 +209,21 @@ spec:
         image: calico/cni:v3.5.0
         command: ["/install-cni.sh"]
         env:
-            # Name of the CNI config file to create.
+        # Name of the CNI config file to create.
         - name: CNI_CONF_NAME
           value: "10-calico.conflist"
-            # The CNI network config to install on each node.
+        # The CNI network config to install on each node.
         - name: CNI_NETWORK_CONFIG
           valueFrom:
             configMapKeyRef:
               name: calico-config
               key: cni_network_config
-            # Set the hostname based on the k8s node name.
+        # Set the hostname based on the k8s node name.
         - name: KUBERNETES_NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-            # Prevents the container from sleeping forever.
+        # Prevents the container from sleeping forever.
         - name: SLEEP
           value: "false"
         volumeMounts:
@@ -238,44 +238,44 @@ spec:
       - name: calico-node
         image: calico/node:v3.5.0
         env:
-            # Use Kubernetes API as the backing datastore.
+        # Use Kubernetes API as the backing datastore.
         - name: DATASTORE_TYPE
           value: "kubernetes"
-            # Typha support: controlled by the ConfigMap.
+        # Typha support: controlled by the ConfigMap.
         - name: FELIX_TYPHAK8SSERVICENAME
           valueFrom:
             configMapKeyRef:
               name: calico-config
               key: typha_service_name
-            # Wait for the datastore.
+        # Wait for the datastore.
         - name: WAIT_FOR_DATASTORE
           value: "true"
-            # Set based on the k8s node name.
+        # Set based on the k8s node name.
         - name: NODENAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-            # Don't enable BGP.
+        # Don't enable BGP.
         - name: CALICO_NETWORKING_BACKEND
           value: "none"
-            # Cluster type to identify the deployment type
+        # Cluster type to identify the deployment type
         - name: CLUSTER_TYPE
           value: "k8s"
-            # The default IPv4 pool to create on startup if none exists. Pod IPs will be
-            # chosen from this range. Changing this value after installation will have
-            # no effect. This should fall within `--cluster-cidr`.
+        # The default IPv4 pool to create on startup if none exists. Pod IPs will be
+        # chosen from this range. Changing this value after installation will have
+        # no effect. This should fall within `--cluster-cidr`.
         - name: CALICO_IPV4POOL_CIDR
           value: "<kubeClusterCidr>"
-            # Disable file logging so `kubectl logs` works.
+        # Disable file logging so `kubectl logs` works.
         - name: CALICO_DISABLE_FILE_LOGGING
           value: "true"
-            # Set Felix endpoint to host default action to ACCEPT.
+        # Set Felix endpoint to host default action to ACCEPT.
         - name: FELIX_DEFAULTENDPOINTTOHOSTACTION
           value: "ACCEPT"
-            # Disable IPv6 on Kubernetes.
+        # Disable IPv6 on Kubernetes.
         - name: FELIX_IPV6SUPPORT
           value: "false"
-            # Set Felix logging to "info"
+        # Set Felix logging to "info"
         - name: FELIX_LOGSEVERITYSCREEN
           value: "info"
         - name: FELIX_HEALTHENABLED
@@ -317,7 +317,7 @@ spec:
           name: var-lib-calico
           readOnly: false
       volumes:
-        # Used by calico/node.
+      # Used by calico/node.
       - name: lib-modules
         hostPath:
           path: /lib/modules
@@ -331,7 +331,7 @@ spec:
         hostPath:
           path: /run/xtables.lock
           type: FileOrCreate
-        # Used to install CNI.
+      # Used to install CNI.
       - name: cni-bin-dir
         hostPath:
           path: /opt/cni/bin
@@ -501,18 +501,18 @@ rules:
   - endpoints
   - services
   verbs:
-      # Used to discover service IPs for advertisement.
+  # Used to discover service IPs for advertisement.
   - watch
   - list
-      # Used to discover Typhas.
+  # Used to discover Typhas.
   - get
 - apiGroups: [""]
   resources:
   - nodes/status
   verbs:
-      # Needed for clearing NodeNetworkUnavailable flag.
+  # Needed for clearing NodeNetworkUnavailable flag.
   - patch
-      # Calico stores some configuration information in node annotations.
+  # Calico stores some configuration information in node annotations.
   - update
   # Watch for changes to Kubernetes NetworkPolicies.
 - apiGroups: ["networking.k8s.io"]
