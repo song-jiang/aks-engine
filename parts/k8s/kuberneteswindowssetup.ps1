@@ -228,6 +228,7 @@ try
             Get-HnsPsm1 -HNSModule $global:HNSModule
         }
 
+<#
         Write-Log "Write kubelet startfile with pod CIDR of $podCIDR"
         Install-KubernetesServices `
             -KubeletConfigArgs $global:KubeletConfigArgs `
@@ -247,6 +248,7 @@ try
             -KubeServiceCIDR $global:KubeServiceCIDR `
             -HNSModule $global:HNSModule `
             -KubeletNodeLabels $global:KubeletNodeLabels
+#>
 
         # Install OpenSSH if SSH enabled
         $sshEnabled = [System.Convert]::ToBoolean("{{ WindowsSSHEnabled }}")
@@ -266,6 +268,9 @@ try
 
         Write-Log "Update service failure actions"
         Update-ServiceFailureActions
+
+        Write-Log "Enable winrm"
+        EnableWinRM
 
         Write-Log "Setup Complete, reboot computer"
         Restart-Computer
